@@ -1,0 +1,13 @@
+{
+  "name": "technova-biodata",
+  "version": "1.0.0",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.967.0",
+    "body-parser": "^1.20.4",
+    "ejs": "^3.1.10",
+    "express": "^4.22.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.22.0",
+    "sequelize": "^6.37.8"
+  }
+}
