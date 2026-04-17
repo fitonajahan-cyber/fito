@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daftar Biodata</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background: #f0f2f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .btn-add {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .btn-add:hover {
+            background: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #007bff;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background: #f5f5f5;
+        }
+        .foto {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .btn-edit {
+            background: #ffc107;
+            color: #333;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daftar Biodata</h1>
+        <a href="/add" class="btn-add">Tambah Biodata</a>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Foto</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Asal Sekolah</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (users && users.length > 0) { %>
+                    <% for (var i = 0; i < users.length; i++) { %>
+                        <tr>
+                            <td><%= users[i].id %></td>
+                            <td>
+                                <% if (users[i].foto_url) { %>
+                                    <img src="<%= users[i].foto_url %>" class="foto" alt="Foto">
+                                <% } else { %>
+                                    -
+                                <% } %>
+                            </td>
+                            <td><%= users[i].nama %></td>
+                            <td><%= users[i].alamat %></td>
+                            <td><%= users[i].asal_sekolah %></td>
+                            <td>
+                                <a href="/edit/<%= users[i].id %>" class="btn-edit">Edit</a>
+                                <a href="/delete/<%= users[i].id %>" class="btn-delete" onclick="return confirm('Yakin hapus?')">Hapus</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="6" class="empty">Belum ada data. Silakan tambah biodata baru.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
